@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+.gallery-item{
+    border: 1px solid black;
+    text-align: center;
+    width: 50%;
+}
