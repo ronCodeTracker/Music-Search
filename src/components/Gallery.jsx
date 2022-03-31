@@ -1,10 +1,12 @@
 
 
 
-import React from 'react'
+import { useContext } from 'react'
+import {DataContext} from '../context/DataContext'
 import GalleryItem from './GalleryItem'
 
-function Gallery({data}) {
+function Gallery() {
+    const data = useContext(DataContext)
     return (
 
         <div>
