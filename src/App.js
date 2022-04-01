@@ -1,19 +1,23 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import './App.css';
 import SearchBar from './components/SearchBar';
 import Gallery from './components/Gallery'
 import { DataContext } from './context/DataContext'
 // use curly braces because DataContext did not use default
 
+import { SearchContext } from './context/SearchContext'
+
 function App() {
     let [search, setSearch] = useState('')
     let [message, setMessage] = useState('Search for Music!')
     let [data, setData] = useState([])
+    let searchInput = useRef('')
 
     const API_URL = 'https://itunes.apple.com/search?term='
 
     useEffect(() => {
         if (search) {
+            //console.log(term)
             const fetchData = async () => {
                 document.title = `${search} Music`
                 const response = await fetch(API_URL + search)
@@ -34,8 +38,13 @@ function App() {
     }
 
   return (
-    <div>
-          <SearchBar handleSearch={handleSearch}/>
+      <div>
+          <SearchContext.Provider value={{
+              term: searchInput,
+              handleSearch: handleSearch
+          }}>
+              <SearchBar/>
+          </SearchContext.Provider>
           {message}
           <DataContext.Provider value={data} >
           <Gallery/>
