@@ -1,7 +1,10 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
 import SearchBar from './components/SearchBar';
 import Gallery from './components/Gallery'
+import AlbumView from './components/AlbumView'
+import ArtistView from './components/ArtistView'
 
 
 function App() {
@@ -34,9 +37,19 @@ function App() {
 
   return (
     <div>
-          <SearchBar handleSearch={handleSearch}/>
           {message}
-          <Gallery data={data}/>
+          <Router>
+              <Routes>
+                  <Route path="/" element={
+                      <>
+                          <SearchBar handleSearch={handleSearch} />
+                          <Gallery data={data} />
+                      </>
+                  } />
+                  <Route path="/album/:id" element={<AlbumView />} />
+                  <Route path="/artist/:id" element={<ArtistView />} />
+              </Routes>
+          </Router>
           
     </div>
   );

@@ -1,7 +1,7 @@
 
 
 import { useState } from 'react'
-
+import { Link } from 'react-router-dom'
 
 function GalleryItem({musicItem}) {
 
@@ -39,7 +39,18 @@ function GalleryItem({musicItem}) {
         return (
             <div style={detailStyle}>
                 <h3>{musicItem.trackName}</h3>
-                <h4>{musicItem.collectionName}</h4>
+                <h3>
+                    <Link to={`/artist/${musicItem.artistId}`}>
+                        {musicItem.artistName}
+                    </Link>
+                </h3>
+                <h3>
+                    <Link to={`/artist/${musicItem.collectionId}`}>
+                        {musicItem.collectionName}
+                    </Link>
+                </h3>
+                <h4>{musicItem.primaryGenreName}</h4>
+                <h4>{musicItem.releaseDate}</h4>
             </div>
         )
     }
