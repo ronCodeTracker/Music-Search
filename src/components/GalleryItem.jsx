@@ -1,12 +1,9 @@
 
-
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function GalleryItem({musicItem}) {
-
     let [view, setView] = useState(false)
-
 
     const simpleStyle = {
         'width': '25vw',
@@ -61,13 +58,10 @@ function GalleryItem({musicItem}) {
 
             {/* This simple ternary shows the simple view when 'view' is false! */}
             {view ? detailView() : simpleView()}
-
-            
             <br/>
         </div>
 
         )
 }
-
 
 export default GalleryItem
